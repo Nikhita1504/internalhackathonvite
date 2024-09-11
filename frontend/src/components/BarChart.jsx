@@ -51,7 +51,7 @@ const ChartComponent = () => {
         // Simulate API call with setTimeout
         setTimeout(async () => {
           try {
-            const response = await axios.post('http://localhost:3000/predict', {
+            const response = await axios.post('https://internalhackathonvite.onrender.com/predict', {
               city_name: selectedVillage
             });
             const apiData = response.data;
