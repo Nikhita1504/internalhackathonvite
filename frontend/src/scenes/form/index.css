@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+
+}
+
+.container {
+  width: 1000px;
+  left: 10%;
+  position: sticky;
+}
+
+.container h3 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.select-container {
+  background-color: #1F2A40;
+  border-radius: 10px;
+  padding: 1rem;
+  color: white;
+  display: flex;
+  gap: 1rem; 
+  flex-wrap: nowrap; 
+  margin-left: 20px;
+}
+
+.select-container select {
+  background-color: #1F2A40;
+  border: 1px solid white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  width: 150px; 
+  height: 35px; 
+  flex: none; 
+  color: white;
+}
+.option-container{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.village-details {
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+.village-details h3{
+    margin-left: 20px;
+font-size: 20px;
+}
+.village-details button{
+    padding: 0.5rem;
+    margin-left: 20px;
+background-color: transparent;
+color: white;
+border: 1px solid white;
+}
+.village-details button:hover{
+    cursor: pointer;
+    background-color: white;
+    color:black;
+}
+
+  
+  .village-details table {
+    /* width: 100%;  */
+    width: auto;
+    border-collapse: collapse;
+    margin-left: 20px;
+  }
+  
+  .village-details table, .village-details th, .village-details td {
+    border: 1px solid rgb(255, 255, 255);
+  }
+  
+  .village-details th, .village-details td {
+    padding: 8px;
+    text-align: left;
+    font-size: 18px;
+  }
+  
