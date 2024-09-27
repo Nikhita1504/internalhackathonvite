@@ -13,6 +13,8 @@ body,
 .app {
   display: flex;
   position: relative;
+  /* background-color: white; */
+
 }
 
 .sidebar{

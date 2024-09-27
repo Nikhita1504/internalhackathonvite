@@ -44,27 +44,36 @@ const CalendarComponent = () => {
   };
 
   return (
-    <div>
-      <h1 style={{ marginLeft: "20px" }}>Scheduled Events</h1>
-      <div style={{ width: '80%', margin: '20px auto' }}>
-        <Calendar
-          localizer={localizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 600 }}
-          selectable
-          onSelectSlot={handleSelectSlot} // Slot selection to add events
-          onSelectEvent={(event) => handleDeleteEvent(event)} // Delete event on selection
-          eventPropGetter={(event) => ({
-            style: { cursor: 'pointer' } // Change cursor to indicate event is selectable
-          })}
-        />
-      </div>
-      <ul>
-      
-      </ul>
-    </div>
+    <div style={{ backgroundColor: "#1E1E2F", padding: "20px", borderRadius: "8px" }}>
+  <h1 style={{ marginLeft: "20px", color: "#ffff", fontSize: "28px", fontWeight: "bold" }}>
+    Scheduled Events
+  </h1>
+  <div style={{ width: '80%', margin: '20px auto', backgroundColor: "#2E2E3E", padding: "20px", borderRadius: "10px" }}>
+    <Calendar
+      localizer={localizer}
+      events={events}
+      startAccessor="start"
+      endAccessor="end"
+      style={{
+        height: 600,
+        color: "white",
+        // border: "2px solid #66BB6A", 
+        borderRadius: "8px",
+        padding: "10px"
+      }}
+      selectable
+      onSelectSlot={handleSelectSlot} // Slot selection to add events
+      onSelectEvent={(event) => handleDeleteEvent(event)} 
+      eventPropGetter={(event) => ({
+        style: { cursor: 'pointer', backgroundColor: '#66BB6A', color: '#fff', borderRadius: '4px' } // Style for each event
+      })}
+    />
+  </div>
+  <ul style={{ marginTop: "20px", color: "#fff", padding: "0 20px" }}>
+
+  </ul>
+</div>
+
   );
 };
 

@@ -1,16 +1,44 @@
 import { Box, Button, IconButton, Typography, useTheme, MenuItem, Select } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ResponsivePie } from '@nivo/pie';
 import { tokens } from "../../theme";
-
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import EmailIcon from "@mui/icons-material/Email";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
+import SavingsIcon from '@mui/icons-material/Savings';
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../../components/Header";
-import LineChart from "../../components/LineChart";
 import StatBox from "../../components/StatBox";
-import DashboardLineChart from "../../components/DashboardLineChart";
+import GroupIcon from '@mui/icons-material/Group';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+
+
+import DashboardLineChart from "../../components/DashboardLineChart"; // Adjust path if needed
+
+// Mock transactions data (make sure this is defined if you're using it)
+const mockTransactions = [
+  { txId: "SSA Mela", user: "GyanJyoti Public School", date: "15-10-24", cost: "View" },
+  { txId: "SCSS Awareness", user: "Jamburi maidan", date: "29-12-24", cost: "View" },
+  { txId: "PLI Drive", user: "Jamburi Maidan", date: "17-01-25", cost: "View" },
+  { txId: "SSA Mela", user: "GyanJyoti Public School", date: "15-10-24", cost: "View" },
+  { txId: "SCSS Awareness", user: "Jamburi maidan", date: "29-12-24", cost: "View" },
+  { txId: "PLI Drive", user: "Jamburi Maidan", date: "17-01-25", cost: "View" },
+  { txId: "SSA Mela", user: "GyanJyoti Public School", date: "15-10-24", cost: "View" },
+  { txId: "SCSS Awareness", user: "Jamburi maidan", date: "29-12-24", cost: "View" },
+  { txId: "PLI Drive", user: "Jamburi Maidan", date: "17-01-25", cost: "View" },
+
+  // Add more mock transactions as needed
+];
+const customerDemographicsData = [
+  { id: 'Children', label: 'Children', value: 25, color: 'hsl(348, 70%, 50%)' },
+  { id: 'Adults', label: 'Adults', value: 50, color: 'hsl(91, 70%, 50%)' },
+  { id: 'Seniors', label: 'Seniors', value: 25, color: 'hsl(209, 70%, 50%)' },
+];
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -18,22 +46,87 @@ const Dashboard = () => {
 
   // Schemes and selected scheme state
   const schemes = ["Senior Citizens Savings Scheme Account",
-  "Sukanya Samriddhi Account",
-  "Kisan Vikas Patra",
-  "Mahila Samman Savings Certificate",];
+    "Sukanya Samriddhi Account",
+    "Kisan Vikas Patra",
+    "Mahila Samman Savings Certificate",
+    "Public Provident fund",
+    "Postal Life Insurance",
+    "Rural Postal Life Insurance"
+  ];
   const [selectedScheme, setSelectedScheme] = useState(schemes[0]);
+
+  const villages = [
+    "Rajpura", "Udalpur", "Tulsigam", "Vachchhesar", "Jambu Goral", "Varsada", "Waghpura",
+    "Tansiya", "Himmatpura", "Dungripura(I)", "Intvad", "Nani Varnoli (Vanto)", "Desar",
+    "Valavav", "Vejpur", "Jesar Gopari", "Vaktapura", "Kadachhala", "Manekla", "Moti Varnoli",
+    "Nani Varnoli", "Chhalier", "Vankaneda", "Ghemalpura", "Dolatpura", "Pipalchhat Vanto",
+    "Rampuri-Narpuri", "Vadiya (Pandu)", "Rajupura", "Limdanu Muvadu", "Kalyan Patelnu Muvadu",
+    "Rajpur", "Pratappura", "Shihora", "Gorsan", "Vaghanu Muvadu",
+  ];
+  const [selectedvillage, setSelectedvillage] = useState(villages[0]);
 
   // Function to handle scheme selection
   const handleSchemeChange = (event) => {
     setSelectedScheme(event.target.value);
   };
+  const handlevillageChange = (event) => {
+    setSelectedvillage(event.target.value);
+  };
 
+  const [currentDate, setCurrentDate] = useState("");
+  const [currentTime, setCurrentTime] = useState("");
+
+  useEffect(() => {
+    // Update the current date
+    const today = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = today.toLocaleDateString("en-IN", options);
+    setCurrentDate(formattedDate);
+
+    // Update the current time every second
+    const updateTime = () => {
+      const now = new Date();
+      const formattedTime = now.toLocaleTimeString("en-IN", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      setCurrentTime(formattedTime);
+    };
+
+    // Call the function once and then set an interval
+    updateTime();
+    const intervalId = setInterval(updateTime, 1000);
+
+    return () => clearInterval(intervalId); // Cleanup the interval on component unmount
+  }, []);
+
+
+  useEffect(() => {
+    const today = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = today.toLocaleDateString("en-IN", options); // You can change locale as needed
+    setCurrentDate(formattedDate);
+  }, []);
   return (
-    <Box m="20px">
+    <Box m="20px" >
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
-        {/* <Box>
+        <Box display="flex" alignItems="center" gap="20px">
+          <Typography
+            variant="h6"
+            color={colors.grey[100]}
+            sx={{
+              fontSize: "16px",       // Adjust the font size
+              fontWeight: "bold",      // Make it bold
+              marginRight: "20px",     // Add some spacing to the right
+              backgroundColor: colors.blueAccent[700], // Add background color if desired
+              padding: "10px 20px",     // Add padding for better spacing
+              borderRadius: "3px",     // Add a slight border radius
+              boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)", // Optional shadow for effect
+            }}
+          >
+            <span style={{ marginRight: "10px" }}>{currentTime}</span>
+            <span>{currentDate}</span>
+          </Typography>
+
           <Button
             sx={{
               backgroundColor: colors.blueAccent[700],
@@ -46,21 +139,34 @@ const Dashboard = () => {
             <DownloadOutlinedIcon sx={{ mr: "10px" }} />
             Download Reports
           </Button>
-        </Box> */}
+        </Box>
       </Box>
-
       {/* SCHEME SELECTION */}
-      <Box display="flex" justifyContent="flex-start" alignItems="center" mb="20px">
-        <Typography variant="h6" color={colors.grey[100]} mr="10px">
-          Select Scheme:
-        </Typography>
-        <Select value={selectedScheme} onChange={handleSchemeChange} sx={{ backgroundColor: colors.primary[400], color: colors.grey[100] }}>
-          {schemes.map((scheme) => (
-            <MenuItem key={scheme} value={scheme}>
-              {scheme}
-            </MenuItem>
-          ))}
-        </Select>
+      <Box>
+        <Box display="flex" gap="1rem" justifyContent="flex-start" alignItems="center" mb="20px">
+          <Typography variant="h6" color={colors.grey[100]} mr="10px">
+            Select Scheme:
+          </Typography>
+          <Select value={selectedScheme} onChange={handleSchemeChange} sx={{ backgroundColor: colors.primary[400], color: colors.grey[100] }}>
+            {schemes.map((scheme) => (
+              <MenuItem key={scheme} value={scheme}>
+                {scheme}
+              </MenuItem>
+            ))}
+          </Select>
+        </Box>
+        <Box display="flex" gap="1rem" justifyContent="flex-start" alignItems="center" mb="20px">
+          <Typography variant="h6" color={colors.grey[100]} mr="10px">
+            Select Village:
+          </Typography>
+          <Select value={selectedvillage} onChange={handlevillageChange} sx={{ backgroundColor: colors.primary[400], color: colors.grey[100] }}>
+            {villages.map((village) => (
+              <MenuItem key={village} value={village}>
+                {village}
+              </MenuItem>
+            ))}
+          </Select>
+        </Box>
       </Box>
 
       {/* GRID & CHARTS */}
@@ -71,7 +177,7 @@ const Dashboard = () => {
         gap="20px"
       >
         {/* ROW 1 - Stat Boxes */}
-       
+        {/* ROW 1 - Stat Boxes */}
         <Box
           gridColumn="span 3"
           backgroundColor={colors.primary[400]}
@@ -80,43 +186,116 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="32,441"
-            subtitle="User Registrations"
+            title="44,441"
+            subtitle="Total Population"
+            icon={<GroupIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
+          // No progress or increase props here to remove the progress circle
+          />
+        </Box>
+
+        <Box
+  gridColumn="span 3"
+  backgroundColor={colors.primary[400]}
+  display="flex"
+  alignItems="center"
+  justifyContent="center"
+>
+  <StatBox
+    title="25,134"
+    subtitle="Traffic Generated"
+    progress="0.30"
+    increase="+43%"
+    icon={<PeopleOutlineIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
+  />
+</Box>
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <StatBox
+            title="15,345"
+            subtitle="Total Accounts Opened"
             progress="0.50"
             increase="+21%"
             icon={<PersonAddIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
           />
         </Box>
-        <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <StatBox
-            title="1,325,134"
-            subtitle="Traffic Generated"
-            progress="0.30"
-            increase="+43%"
-            icon={<TrafficIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
-          />
-        </Box>
-        <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <StatBox
-            title="12,361"
-            subtitle="Emails Sent"
-            progress="0.75"
-            increase="+14%"
-            icon={<EmailIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
-          />
-        </Box>
+
+
+
+       
+<Box
+  gridColumn="span 3"
+  backgroundColor={colors.primary[400]}
+  display="flex"
+  alignItems="center"
+  justifyContent="center"
+>
+  <StatBox
+    title="Rs 1,12,361"
+    subtitle="Total Funds Deposited"
+    progress="0.75"
+    increase="+14%"
+    icon={<CurrencyRupeeIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
+  />
+</Box>
+
+
+        {/* <Box
+  gridColumn="span 3"
+  backgroundColor={colors.primary[400]}
+  display="flex"
+  alignItems="center"
+  justifyContent="center"
+>
+  <ResponsivePie
+    data={customerDemographicsData}
+    margin={{ top: 40, right: 80, bottom: 40, left: 80 }} // Adjust margins for better label placement
+    innerRadius={0.5}
+    padAngle={0.7}
+    cornerRadius={3}
+    colors={{ scheme: 'category10' }} // Use a predefined color scheme or replace with custom colors
+    borderWidth={1}
+    borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
+    radialLabelsSkipAngle={10}
+    radialLabelsTextColor="#333333"
+    radialLabelsLinkColor={{ from: 'color' }}
+    sliceLabelsSkipAngle={10}
+    sliceLabelsTextColor="#333333"
+    sliceLabel={(d) => `${d.id}: ${d.value}%`} // Custom slice labels with percentage
+    legends={[
+      {
+        anchor: 'bottom',
+        direction: 'row',
+        justify: false,
+        translateX: 0,
+        translateY: 56,
+        itemsSpacing: 10,
+        itemWidth: 100,
+        itemHeight: 18,
+        itemTextColor: '#999',
+        itemDirection: 'left-to-right',
+        itemOpacity: 1,
+        symbolSize: 18,
+        symbolShape: 'circle',
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemTextColor: 'white',
+            },
+          },
+        ],
+      },
+    ]}
+  />
+</Box> */}
+
+
+
 
         {/* ROW 2 - Line Chart and Recent Transactions */}
         <Box gridColumn="span 8" gridRow="span 2" backgroundColor={colors.primary[400]}>
@@ -130,10 +309,10 @@ const Dashboard = () => {
           </Box>
         </Box>
 
-        {/* <Box gridColumn="span 4" gridRow="span 2" backgroundColor={colors.primary[400]} overflow="auto">
+        <Box gridColumn="span 4" gridRow="span 2" backgroundColor={colors.primary[400]} overflow="auto">
           <Box display="flex" justifyContent="space-between" alignItems="center" borderBottom={`4px solid ${colors.primary[500]}`} colors={colors.grey[100]} p="15px">
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Recent Transactions
+              Upcoming Melas
             </Typography>
           </Box>
           {mockTransactions.map((transaction, i) => (
@@ -147,14 +326,14 @@ const Dashboard = () => {
                 </Typography>
               </Box>
               <Box color={colors.grey[100]}>{transaction.date}</Box>
-              <Box backgroundColor={colors.greenAccent[500]} p="5px 10px" borderRadius="4px">
-                ${transaction.cost}
+              <Box backgroundColor="#F59E0C" color="black"  p="5px 10px" borderRadius="4px">
+             {transaction.cost}
               </Box>
             </Box>
           ))}
-        </Box> */}
+        </Box>
       </Box>
-    </Box>
+    </Box >
   );
 };
 

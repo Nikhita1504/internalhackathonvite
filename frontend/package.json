@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
+    "@emotion/styled": "^11.10.4", 
     "@fullcalendar/core": "^5.11.3",
     "@fullcalendar/daygrid": "^5.11.3",
     "@fullcalendar/interaction": "^5.11.3",
@@ -52,7 +52,7 @@
     "recharts": "^2.12.7",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
-  },
+},
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "@types/react": "^18.3.3",

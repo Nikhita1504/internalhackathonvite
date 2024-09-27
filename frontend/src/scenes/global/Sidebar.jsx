@@ -2,6 +2,10 @@ import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
+import logo from '/Users/nikhitadas/Desktop/chat app/frontend/src/assets/logo.jpeg'; // Import the logo
+
+
+
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -77,19 +81,32 @@ const Sidebar = () => {
             }}
           >
             {!isCollapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                ml="15px"
-              >
-                <Typography variant="h3" color={colors.grey[100]}>
-                 KshetraSeva
-                </Typography>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <MenuOutlinedIcon />
-                </IconButton>
-              </Box>
+          //    <Box
+          //    display="flex"
+          //    justifyContent="space-between"
+          //    alignItems="center"
+          //    ml="15px"
+          //  >
+          //    <Box>
+          //      <img src={logo} alt="Logo" style={{ height: '40px', width: 'auto' }} /> {/* Adjust height and width as needed */}
+          //    </Box>
+          //    <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+          //      <MenuOutlinedIcon />
+          //    </IconButton>
+          //  </Box>
+            <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+            ml="15px"
+          >
+            <Typography variant="h5" color={colors.grey[100]}>
+             PostYojnaAI
+            </Typography>
+            <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+              <MenuOutlinedIcon />
+            </IconButton>
+          </Box>
             )}
           </MenuItem>
 
@@ -114,7 +131,7 @@ const Sidebar = () => {
                   Rahul Vyas
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                   Admin
+                  Branch Manager
                 </Typography>
               </Box>
             </Box>
@@ -168,7 +185,7 @@ const Sidebar = () => {
              Visualizations
             </Typography>
             <Item
-              title="Demographic Chart"
+              title="Demographic Insights"
               to="/bar"
               icon={<BarChartOutlinedIcon />}
               selected={selected}

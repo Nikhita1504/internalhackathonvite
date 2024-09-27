@@ -1,11 +1,9 @@
-import { useState } from "react";
-import axios from 'axios';
+import React, { useState } from "react";
 import data from '../scenes/form/data.json';
 import valsadData from '../data/valsad f.json';
 import vadodraData from "../data/vadodra f.json";
 import ChartView from "./ChartView";
 import ResultsView from "./ResultsView";
-// import HashLoader from "./HashLoader";
 import HashLoader from 'react-spinners/HashLoader';
 
 const ChartComponent = () => {
@@ -42,31 +40,41 @@ const ChartComponent = () => {
     }
   };
 
-  const handleShowResults = async () => {
+  const handleShowResults = () => {
     if (villageDetails) {
       setIsLoading(true); // Start loading
       setView('results'); // Switch to the results view
 
-      try {
-        // Simulate API call with setTimeout
-        setTimeout(async () => {
-          try {
-            const response = await axios.post('https://internalhackathonvite.onrender.com/predict', {
-              city_name: selectedVillage
-            });
-            const apiData = response.data;
-            setSchemeResults(apiData); // Set the API data
-            setIsLoading(false); // Stop loading after data is fetched
-          } catch (error) {
-            console.error("Error fetching API data:", error);
-            setIsLoading(false); // Stop loading even if there's an error
-            alert('Failed to fetch API results');
-          }
-        }, 0); // Simulate 2 seconds delay for API response
-      } catch (error) {
-        console.error("Error fetching API data:", error);
-        setIsLoading(false); // Stop loading even if there's an error
-      }
+      // Simulate API call with a timeout
+      setTimeout(() => {
+        const mockApiData = {
+          scheme1: {
+            name: "Scheme 1",
+            value: 0.933,
+            demographic: 'Senior Citizens',
+            action: 'Organize SCSS-specific melas',
+            time: 'April - June'
+          },
+          scheme2: {
+            name: "Scheme 2",
+            value: 0.82,
+            demographic: 'Female Children below 10 years',
+            action: 'Host workshops',
+            time: 'June - July'
+          },
+          scheme3: {
+            name: "Scheme 3",
+            value: 0.80,
+            demographic: 'Working Professionals',
+            action: 'Increase awareness campaigns',
+            time: 'January - March'
+          },
+          // Add more mock data as needed
+        };
+
+        setSchemeResults(Object.values(mockApiData)); // Set the simulated API data
+        setIsLoading(false); // Stop loading after data is set
+      }, 2000); // Simulating a 2-second delay
     } else {
       alert('Please select a village first.');
     }
@@ -74,9 +82,15 @@ const ChartComponent = () => {
 
   return (
     <div>
+      <div className="moving-strip">
+        <p className="moving-text">
+          Made only for Valsad and Vadodara districts of Gujarat.
+        </p>
+      </div>
       {view === 'selection' && (
         <div className='selection-container'>
           <h3>Select Location</h3>
+
           <div className='select-group'>
             <div className="option">
               <p>State</p>
@@ -145,37 +159,29 @@ const ChartComponent = () => {
               </select>
             </div>
           </div>
-          <button className="Show-chart" onClick={handleShowChart}>Show Charts</button>
+          <button className="Show-chart" onClick={handleShowChart}>Generate Demographic Report</button>
         </div>
       )}
 
       {view === 'charts' && villageDetails && !isLoading && (
         <div className="full-page-chart">
-          <div >
-        <button className="Show-results" onClick={handleShowResults}>Show Results</button>
-      </div>
+          <div>
+            <button className="Show-results" onClick={handleShowResults}>View Predictive Analysis</button>
+          </div>
           {/* ChartView rendering the village details */}
-          <ChartView villageDetails={villageDetails} />
-
-          {/* The "Show Results" button is now moved below the charts */}
-          
+          <ChartView villageDetails={villageDetails} villageName={selectedVillage} />
         </div>
       )}
-     
 
       {isLoading && (
         <div className="loader">
-          {/* Display loader while fetching the data */}
-          {/* <p>Loading...</p> */}
           <HashLoader color="#36D7B7" size={60} />
-          {/* <HashLoader /> */}
-          {/* <HashLoader/> */}
         </div>
       )}
 
       {view === 'results' && schemeResults && !isLoading && (
         <div className="full-page-results">
-          <ResultsView results={schemeResults}  villageName={selectedVillage} />
+          <ResultsView results={schemeResults} villageName={selectedVillage} />
         </div>
       )}
     </div>
@@ -183,7 +189,3 @@ const ChartComponent = () => {
 };
 
 export default ChartComponent;
-
-
-
-

@@ -6,17 +6,16 @@ import { tokens } from "../theme";
 const mockLineData = [
   {
     id: "SCSS",
-    color: "hsl(100, 70%, 50%)",
+    color: "#8B5CF6", // Set the color to #8B5CF6
     data: [
-      { x: 2018, y: 12 },
-        { x: 2019, y: 18 },
-        { x: 2020, y: 10 },
-        { x: 2021, y: 25 },
-        { x: 2022, y: 20 },
-        { x: 2023, y: 30 },
+      { x: 2018, y: 10101 }, // Corrected y value
+      { x: 2019, y: 12200 }, // Corrected y value
+      { x: 2020, y: 13195 }, // Corrected y value
+      { x: 2021, y: 11245 }, // Corrected y value
+      { x: 2022, y: 11456 }, // Corrected y value
+      { x: 2023, y: 15345 }, // Corrected y value
     ],
   },
-  
 ];
 
 const DashboardLineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
@@ -85,12 +84,13 @@ const DashboardLineChart = ({ isCustomLineColors = false, isDashboard = false })
       axisLeft={{
         orient: "left",
         tickValues: 5,
-        tickSize: 3,
-        tickPadding: 5,
+        tickSize: 2,
+        tickPadding: 10, // Increased padding for ticks to create more space
         tickRotation: 0,
         legend: "Registrations",
-        legendOffset: -40,
+        legendOffset: -52, // Shift the legend further left
         legendPosition: "middle",
+
       }}
       enableGridX={false}
       enableGridY={false}
@@ -131,5 +131,3 @@ const DashboardLineChart = ({ isCustomLineColors = false, isDashboard = false })
 };
 
 export default DashboardLineChart;
-
-

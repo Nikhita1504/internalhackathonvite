@@ -1,0 +1,52 @@
+.results-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #1a1a2e;
+  }
+  
+  .schemes-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .schemes-table th,
+  .schemes-table td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .schemes-table th {
+    background-color: #162447;
+  }
+  
+  .schemes-table td {
+    background-color: #1f4068;
+  }
+  
+  .scheme-name {
+    font-weight: bold;
+  }
+  
+  .circular-progress {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+  }
+  
+  .schedule {
+    padding: 5px 10px;
+    background-color:transparent;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    /* border-radius: 5px; */
+    border:1px solid white ;
+  }
+  
+  .schedule:hover {
+    background-color: #00ff88;
+  }
+  
