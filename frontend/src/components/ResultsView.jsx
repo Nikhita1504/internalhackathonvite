@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import './ResultsView.css'; // Ensure you link your CSS file here
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const ResultsView = ({ results, villageName }) => {
   const navigate = useNavigate();
   const [scheduledSchemes, setScheduledSchemes] = useState({}); // Track scheduled schemes
+  // useEffect(() => {
+  //   toast.info('View Sc!'); // Test notification
+  // }, []);
 
   const handleScheduleClick = (scheme) => {
     if (!scheduledSchemes[scheme.name]) {
@@ -14,8 +20,10 @@ const ResultsView = ({ results, villageName }) => {
         state: { scheme: scheme.name, villageName: villageName }
       });
       setScheduledSchemes((prev) => ({ ...prev, [scheme.name]: true })); // Mark as scheduled
+      toast.success(`Event for ${scheme.name} added to the calendar`); // Show toast notification
     }
   };
+  
 
   // List of all schemes from the image
   const schemes = [
@@ -83,6 +91,7 @@ const ResultsView = ({ results, villageName }) => {
           ))}
         </tbody>
       </table>
+      <ToastContainer /> {/* Add ToastContainer here */}
     </div>
   );
 };

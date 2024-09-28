@@ -194,20 +194,20 @@ const Dashboard = () => {
         </Box>
 
         <Box
-  gridColumn="span 3"
-  backgroundColor={colors.primary[400]}
-  display="flex"
-  alignItems="center"
-  justifyContent="center"
->
-  <StatBox
-    title="25,134"
-    subtitle="Traffic Generated"
-    progress="0.30"
-    increase="+43%"
-    icon={<PeopleOutlineIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
-  />
-</Box>
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <StatBox
+            title="25,134"
+            subtitle="Traffic Generated"
+            progress="0.30"
+            increase="+43%"
+            icon={<PeopleOutlineIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
+          />
+        </Box>
         <Box
           gridColumn="span 3"
           backgroundColor={colors.primary[400]}
@@ -226,73 +226,25 @@ const Dashboard = () => {
 
 
 
-       
-<Box
-  gridColumn="span 3"
-  backgroundColor={colors.primary[400]}
-  display="flex"
-  alignItems="center"
-  justifyContent="center"
->
-  <StatBox
-    title="Rs 1,12,361"
-    subtitle="Total Funds Deposited"
-    progress="0.75"
-    increase="+14%"
-    icon={<CurrencyRupeeIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
-  />
-</Box>
+
+        <Box
+          gridColumn="span 3"
+          backgroundColor={colors.primary[400]}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <StatBox
+            title="Rs 1,12,361"
+            subtitle="Total Funds Deposited"
+            progress="0.75"
+            increase="+14%"
+            icon={<CurrencyRupeeIcon sx={{ color: colors.greenAccent[600], fontSize: "26px" }} />}
+          />
+        </Box>
 
 
-        {/* <Box
-  gridColumn="span 3"
-  backgroundColor={colors.primary[400]}
-  display="flex"
-  alignItems="center"
-  justifyContent="center"
->
-  <ResponsivePie
-    data={customerDemographicsData}
-    margin={{ top: 40, right: 80, bottom: 40, left: 80 }} // Adjust margins for better label placement
-    innerRadius={0.5}
-    padAngle={0.7}
-    cornerRadius={3}
-    colors={{ scheme: 'category10' }} // Use a predefined color scheme or replace with custom colors
-    borderWidth={1}
-    borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
-    radialLabelsSkipAngle={10}
-    radialLabelsTextColor="#333333"
-    radialLabelsLinkColor={{ from: 'color' }}
-    sliceLabelsSkipAngle={10}
-    sliceLabelsTextColor="#333333"
-    sliceLabel={(d) => `${d.id}: ${d.value}%`} // Custom slice labels with percentage
-    legends={[
-      {
-        anchor: 'bottom',
-        direction: 'row',
-        justify: false,
-        translateX: 0,
-        translateY: 56,
-        itemsSpacing: 10,
-        itemWidth: 100,
-        itemHeight: 18,
-        itemTextColor: '#999',
-        itemDirection: 'left-to-right',
-        itemOpacity: 1,
-        symbolSize: 18,
-        symbolShape: 'circle',
-        effects: [
-          {
-            on: 'hover',
-            style: {
-              itemTextColor: 'white',
-            },
-          },
-        ],
-      },
-    ]}
-  />
-</Box> */}
+
 
 
 
@@ -326,14 +278,16 @@ const Dashboard = () => {
                 </Typography>
               </Box>
               <Box color={colors.grey[100]}>{transaction.date}</Box>
-              <Box backgroundColor="#F59E0C" color="black"  p="5px 10px" borderRadius="4px">
-             {transaction.cost}
+              <Box backgroundColor="#F59E0C" color="black" p="5px 10px" borderRadius="4px">
+                {transaction.cost}
               </Box>
             </Box>
           ))}
         </Box>
       </Box>
     </Box >
+
+
   );
 };
 

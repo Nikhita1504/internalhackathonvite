@@ -74,7 +74,7 @@ const ChartComponent = () => {
 
         setSchemeResults(Object.values(mockApiData)); // Set the simulated API data
         setIsLoading(false); // Stop loading after data is set
-      }, 4000); // Simulating a 2-second delay
+      }, 3000); // Simulating a 2-second delay
     } else {
       alert('Please select a village first.');
     }

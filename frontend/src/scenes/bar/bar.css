@@ -198,12 +198,14 @@ body {
   border: 1px solid white;
   padding: 0.5rem;
   /* margin-top: 12px; */
-  background-color: transparent;
+  background-color: rgb(249, 72, 72);
   color: white;
   position: relative;
   /* width: 50px; */
   /* left: 43%; */
-  top: 0;
+  top: 48px;
+  left: 83%;
+  /* left: 100; */
 
 }
 
@@ -570,7 +572,7 @@ body {
 
 }
 .moving-strip {
-  background-color: #010101; /* Red background strip */
+  background-color: rgb(249, 72, 72); /* Red background strip */
   width: 100%; /* Full width */
   overflow: hidden; /* Hide overflow to contain moving text */
   position: relative; /* Positioning the strip */
