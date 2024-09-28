@@ -1,0 +1,47 @@
+/* Navigation buttons (Today, Back, Next) */
+.rbc-toolbar button {
+    background-color: #3A3A48;
+    color: #ffffff;
+    border: 1px solid #555;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .rbc-toolbar button:hover {
+    background-color: #FFBB28; /* Yellow color on hover */
+    color: #333; /* Darker text on hover */
+  }
+  
+  .rbc-toolbar button:focus {
+    outline: none;
+  }
+  
+  /* Selected view (e.g., Month, Week) active styling */
+  .rbc-toolbar button.rbc-active {
+    background-color: #66BB6A; /* Green color for active view */
+    color: #fff;
+  }
+  
+  /* Custom styling for the toolbar */
+  .rbc-toolbar {
+    background-color: #2E2E3E;
+    padding: 10px;
+    border-bottom: 2px solid #555;
+  }
+  
+  /* Custom font styling for Month, Week, Day labels */
+  .rbc-toolbar label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  /* Custom styling for Today, Back, and Next button container */
+  .rbc-btn-group {
+    display: flex;
+    gap: 10px;
+  }
+  

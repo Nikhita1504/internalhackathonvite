@@ -7,53 +7,92 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+/* Container for the selection dropdown */
 .selection-container {
-  width: 500px;
-  left: 40%;
-  margin-top: 10%;
-  position: sticky;
-  height: 100vh;
-  text-align: center;
-  /* border: 2px solid red; */
-}
-
-.selection-container h3 {
-  text-align: center;
-  font-size: 20px;
-  font-weight: 500;
-}
-
-.select-group {
+  width: 900px;
+  margin: 0 auto;  /* Center horizontally */
+  margin-top: 20px;
+  text-align: left; /* Align text to left */
   background-color: #1F2A40;
-
-
+  padding: 2rem; /* Add padding for spacing */
   border-radius: 10px;
-  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add a shadow for depth */
+  color: white;
+}
+
+/* Title styling */
+.selection-container h3 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 1rem; /* Spacing below the title */
+}
+
+/* Select box styling */
+.select-group select {
+  width: 100%; /* Make the dropdown full width */
+  padding: 12px; /* Add more padding for a larger hit area */
+  background-color: #1F2A40;
+  border: 1px solid #4D4D4D;
+  border-radius: 8px;
   color: white;
   font-size: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  /* flex-wrap: nowrap; */
-
+  appearance: none; /* Remove default dropdown arrow */
+  -webkit-appearance: none; /* For Safari */
+  -moz-appearance: none; /* For Firefox */
+  position: relative;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
-.option {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.select-group select {
-  background-color: #1F2A40;
-  border: 1px solid white;
-  padding: 0.5rem;
-  border-radius: 10px;
-  width: 150px;
-  height: 35px;
-  flex: none;
+/* Add custom dropdown arrow */
+.select-group select:after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
   color: white;
+  pointer-events: none;
 }
+
+/* On hover */
+.select-group select:hover {
+  border-color: #A3A3A3;
+}
+
+/* Option styling */
+.option {
+  font-size: 16px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the options */
+.option:hover {
+  background-color: #303E56;
+  border-radius: 16px;
+}
+
+/* Additional details button style */
+.village-details button {
+  margin-top: 20px;
+  padding: 12px;
+  width: 100%; /* Full-width button */
+  font-size: 16px;
+  background-color: transparent;
+  border: 1px solid #FFFFFF;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.village-details button:hover {
+  background-color: white;
+  color: #1F2A40;
+  cursor: pointer;
+}
+
 
 .village-chart {
   margin-top: 20px;
@@ -72,7 +111,7 @@ body {
   font-size: 20px;
 }
 
-.village-details button {
+/* .village-details button {
   padding: 0.5rem;
   margin-left: 20px;
   background-color: transparent;
@@ -84,7 +123,7 @@ body {
   cursor: pointer;
   background-color: white;
   color: black;
-}
+} */
 
 .village-details table {
   width: auto;

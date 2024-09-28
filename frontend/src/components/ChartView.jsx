@@ -163,7 +163,7 @@ const ChartView = ({ villageDetails, villageName }) => {
           {hoveredChart === 'population' && (
             <div className="modal-chart">
               <h2>Population Based Chart</h2>
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={350}>
                 <PieChart>
                   <Pie
                     data={getPopulationData()}
@@ -194,7 +194,7 @@ const ChartView = ({ villageDetails, villageName }) => {
           {hoveredChart === 'ageGroup' && (
             <div className="modal-chart">
               <h2>Age Groups Based Chart</h2>
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={350}>
                 <BarChart data={getAgeGroupData()}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
@@ -212,16 +212,31 @@ const ChartView = ({ villageDetails, villageName }) => {
           {hoveredChart === 'occupation' && (
             <div className="modal-chart">
               <h2>Occupation Based Chart</h2>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={getOccupationData()}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="value" fill="#8884d8" />
-                </BarChart>
-              </ResponsiveContainer>
+              <ResponsiveContainer width="100%" height={350}>
+              <BarChart data={getOccupationData()}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="name"
+                  interval={0}
+                  tick={{
+                    fontSize: "12px",
+              
+                    width: 80, // Adjust width to control when text breaks
+                    wordBreak: "break-word",
+                    whiteSpace: "normal" // Allows text to wrap
+                  }}
+                  tickFormatter={(name) => {
+                    // Check if the name is too long and split it into multiple lines
+                    return name.length > 15 ? name.replace(/\s+/g, '\n') : name;
+                  }}
+                />
+
+                <YAxis  />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="value" fill="#FFBB28" />
+              </BarChart>
+            </ResponsiveContainer>
               <p>Occupation Insights</p>
             </div>
           )}

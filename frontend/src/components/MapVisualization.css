@@ -1,0 +1,13 @@
+/* MapVisualization.css */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  select {
+    margin: 10px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
